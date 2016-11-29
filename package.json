@@ -10,6 +10,15 @@
     "chip-io": "^2.1.0",
     "debug": "^2.3.3",
     "express": "^4.14.0",
-    "johnny-five": "^0.10.6"
+    "johnny-five": "^0.10.6",
+    "node-schedule": "^1.2.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.6"
+  },
+  "scripts": {
+    "test": "mocha"
   }
 }
