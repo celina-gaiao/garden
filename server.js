@@ -16,6 +16,29 @@ const actuators = require('./actuators');
 
 actuators.init().then((solenoids) => {
 
+    const schedule = require('./schedule');
+    solenoids.map((s) => {
+        switch (s.id) {
+            case 'green':
+                s.startTimeH = 7;
+                s.startTimeM = 13;
+                s.duration = 1;
+                break;
+            case 'blue':
+                s.startTimeH = 7;
+                s.startTimeM = 0;
+                s.duration = 5;
+                break;
+            case 'orange':
+                s.startTimeH = 7;
+                s.startTimeM = 2;
+                s.duration = 10;
+                break;
+        }
+    });
+
+    schedule.setSchedule(solenoids.filter(solenoid => solenoid.duration));
+
     app.get('/solenoids/:color/:status', function (req, res, next) {
 
         // TODO do a better mapping
