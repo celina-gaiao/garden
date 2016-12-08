@@ -41,11 +41,9 @@ actuators.init().then((solenoids) => {
 
     app.get('/solenoids/:color/:status', function (req, res, next) {
 
-        // TODO do a better mapping
-        let colors = ['brown', 'blue', 'orange', 'green'];
-        let s = solenoids[colors.indexOf(req.params.color)];
+        let s = solenoids.find(solenoid => solenoid.id === req.params.color);
 
-        debug(`turning ${s.pin} ${req.params.status}`);
+        debug(`turning ${s.id} ${req.params.status}`);
 
         req.params.status === 'on' ? s.on() : s.off();
         res.status(200).send();
