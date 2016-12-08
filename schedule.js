@@ -11,6 +11,7 @@
  */
 
 const schedule = require('node-schedule');
+const debug = require('debug')('garden:schedule');
 
 let schedules = [];
 
@@ -18,6 +19,7 @@ let schedules = [];
  * Check solenoid values, turn the solenoid on and off.
  *
  * @param {Object} solenoid The solenoid.
+ * @param {number} [solenoid.id] The unique id of the solenoid (for debug).
  * @param {number} solenoid.startTimeH The hour to call `on`.
  * @param {number} solenoid.startTimeM The minute to call `on`.
  * @param {number} solenoid.duration The interval in minutes to be on.
@@ -41,9 +43,17 @@ function setSingleSchedule(solenoid) {
     }
 
     let s = schedule.scheduleJob(`${startTimeM} ${startTimeH} * * *`, function () {
+
+        debug(`turning on ${solenoid.id} at ${new Date()}`);
+
         solenoid.on();
+
         setTimeout(() => {
+
+            debug(`turning off ${solenoid.id} at ${new Date()}`);
+
             solenoid.off();
+
         }, duration * 60 * 1000);
     });
 
