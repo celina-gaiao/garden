@@ -9,7 +9,7 @@
 const five = require('johnny-five');
 const chipio = require('chip-io');
 
-let colors = ['brown', 'blue', 'orange', 'green'];
+const colors = ['brown', 'blue', 'orange', 'green'];
 
 exports.init = function() {
 
@@ -19,14 +19,14 @@ exports.init = function() {
         if (process.env.NODE_ENV !== 'production') {
 
             for (let i = 0; i < 4; i++) {
-                solenoids.push({
+                solenoids[i] = {
                     id: colors[i],
                     pin: `CSID${i * 2}`,
                     on: () => {
                     },
                     off: () => {
                     },
-                });
+                };
             }
 
             resolve(solenoids);
