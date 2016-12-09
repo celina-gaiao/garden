@@ -20,17 +20,17 @@ actuators.init().then((solenoids) => {
     solenoids.map((s) => {
         switch (s.id) {
             case 'green':
-                s.startTimeH = 7;
+                s.startTimeH = 15;
                 s.startTimeM = 13;
                 s.duration = 1;
                 break;
             case 'blue':
-                s.startTimeH = 7;
+                s.startTimeH = 15;
                 s.startTimeM = 0;
                 s.duration = 5;
                 break;
             case 'orange':
-                s.startTimeH = 7;
+                s.startTimeH = 15;
                 s.startTimeM = 2;
                 s.duration = 10;
                 break;
